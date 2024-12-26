@@ -2,15 +2,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-//importing custom fonts
-@font-face {
-    font-family: "Inter_Tight";
-    src: url("assets/fonts/Inter_Tight/InterTight-VariableFont_wght.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-}
-
-* {
-    font-family: "Inter_Tight", serif;
-}
