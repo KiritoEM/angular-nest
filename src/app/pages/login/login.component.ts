@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { InputComponent } from '../../shared/input/input.component';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  imports: [InputComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
