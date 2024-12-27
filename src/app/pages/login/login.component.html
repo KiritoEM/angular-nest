@@ -1,15 +1,15 @@
 <div class="flex w-full overflow-x-hidden min-h-screen justify-center items-center bg-[#141414]">
-    <div class="wrapper border border-input flex flex-col items-center gap-3">
-        <div class="wrapper p-10 flex flex-col items-center gap-3">
-            <h3 class="text-white text-[1.6em] font-semibold">Se connecter à votre compte</h3>
+    <div class="wrapper p-9 border border-input flex flex-col items-center gap-3">
+        <h3 class="text-white text-[1.6em] font-semibold">Se connecter à votre compte</h3>
 
-            <!-- NOTE form -->
-            <form class="w-full mt-4 flex flex-col gap-4">
-                <app-input label="Adresse email" placeholder="Entrez votre email" [type]="'email'"
-                    formControlName="emal"></app-input>
-                <app-input label="Mot de passe" placeholder="Entrez votre email" [type]="'email'"
-                    formControlName="emal"></app-input>
-                <p class="text-blue-500 text-sm text-end">Mot de passe oublié?</p>
-            </form>
-        </div>
+        <!-- NOTE form -->
+        <form class="w-full mt-6 flex flex-col gap-4">
+            <app-input label="Adresse email" placeholder="Entrez votre email" [type]="'email'" formControlName="email"
+                customErrorText="L'email est requis"></app-input>
+            <app-input label="Mot de passe" placeholder="Entrez votre email" [type]="'email'" formControlName="email"
+                customErrorText="Le mot de passe est requis"></app-input>
+            <p class="text-blue-500 text-sm text-end">Mot de passe oublié?</p>
+            <button my-button>Se connecter</button>
+        </form>
     </div>
+</div>

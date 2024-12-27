@@ -1,0 +1,18 @@
+.base-input {
+    display: flex;
+    margin-top: 0.5rem;
+    height: 45px;
+    align-items: center;
+    border-radius: 0.5rem;
+    background-color: hsl(var(--input));
+    padding-left: 0.75rem;
+    font-size: 0.875rem;
+    --tw-ring-offset-color: hsl(var(--background));
+
+    &:focus-within {
+        outline: none;
+        ring-width: 1px;
+        ring-color: var(--primary);
+        ring-offset-width: 2px;
+    }
+}

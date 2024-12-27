@@ -1,0 +1,44 @@
+:host {
+    @apply inline-block items-center justify-center px-4 py-2 text-sm;
+
+    grid-auto-flow: column;
+    gap: var(--btn-gap, 0.5rem);
+    line-height: 1.2;
+    cursor: pointer;
+    background-color: var(--btn-theme-bg-color, #DF6D2D);
+    color: var(--btn-theme-color, white);
+    min-width: 100px;
+    min-height: 43px;
+    border: 1px solid var(--btn-theme-bg-color, #DF6D2D);
+    border-radius: var(--btn-radius, 10px);
+
+    ::ng-deep svg,
+    ::ng-deep img {
+        width: 24px;
+        height: 24px;
+        margin-top: -5px;
+        margin-bottom: -5px;
+    }
+
+    &:focus-visible {
+        outline: 3px solid #DF6D2D;
+        outline-offset: 2px;
+    }
+
+    &.btn-descructive {
+        background-color: rgb(236, 52, 52);
+    }
+
+    &.btn-outline {
+        background-color: transparent;
+        color: var(--btn-theme-color, #DF6D2D);
+        opacity: 80;
+
+        &:hover,
+        &:focus {
+            background-color: var(--btn-theme-bg-color, #DF6D2D);
+            opacity: 80;
+            color: var(--btn-theme-color, white);
+        }
+    }
+}

@@ -14,15 +14,16 @@ export class InputComponent {
   @Input() name: string = '';
   @Input() type: string = 'text';
   @Input() class: string = '';
+  @Input() customErrorText: string = 'Ce champ est requis';
 
   @Output() valueChange = new EventEmitter<string>();
 
   control: FormControl = new FormControl('', Validators.required);
 
   getClasses() {
-    const baseClasses = "flex mt-2 h-[45px] items-center rounded-lg bg-input/65 bg-transparent pl-3 text-sm ring-offset-background focus-within:ring-1 focus-within:ring-primary focus-within:ring-offset-2";
+    const baseClass = "base-input";
     const additionalClasses = this.class?.trim() || '';
-    return `${baseClasses} ${additionalClasses}`;
+    return `${baseClass} ${additionalClasses}`;
   }
 
   get value(): string {

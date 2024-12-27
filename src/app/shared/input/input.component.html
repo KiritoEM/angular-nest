@@ -5,7 +5,7 @@
             class="bg-transparent w-full p-2 placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
             [formControl]="control" [attr.placeholder]="placeholder || 'Entre une valeur'" />
     </div>
-    <div *ngIf="control.invalid && control.touched" class="text-destructive text-sm">
-        This field is required.
+    <div *ngIf="control.invalid && control.touched" class="text-destructive text-xs mt-2">
+        {{customErrorText}}
     </div>
 </div>
