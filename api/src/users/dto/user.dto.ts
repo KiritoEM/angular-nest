@@ -1,14 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty, OmitType } from "@nestjs/swagger";
 import { IsEmail } from "class-validator";
 import { IsNotEmpty, IsString } from "class-validator";
+import { UserEntity } from "../entity/user.entity";
 
-export class CreateUserDto {
-    @ApiProperty()
-    @IsNotEmpty() @IsEmail() readonly email: string;
-
-    @ApiProperty()
-    @IsNotEmpty() @IsString() readonly username: string;
-
-    @ApiProperty()
-    @IsNotEmpty() @IsString() readonly password: string;
-}
+export class CreateUserDto extends OmitType(UserEntity, ['id']) { }
