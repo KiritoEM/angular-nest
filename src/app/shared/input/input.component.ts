@@ -10,7 +10,7 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 })
 export class InputComponent {
   @Input() label: string = '';
-  @Input() placeholder: string = 'Entre une valeur';
+  @Input() placeholder: string = 'Entrer une valeur';
   @Input() name: string = '';
   @Input() type: string = 'text';
   @Input() class: string = '';
