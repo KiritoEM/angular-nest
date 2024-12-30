@@ -1,4 +1,4 @@
-import { NestFactory } from '@nestjs/core';
+import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as morgan from "morgan";
 import * as compression from "compression";
@@ -6,9 +6,12 @@ import helmet from "helmet";
 import { config as DotenvConfig } from "dotenv";
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
+import { AllExceptionsFilter } from './libs/exception-filters/all-exceptions.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  const { httpAdapter } = app.get(HttpAdapterHost);
 
   const config = new DocumentBuilder()
     .setTitle('pokemon-app')
@@ -22,8 +25,10 @@ async function bootstrap() {
   DotenvConfig();
 
   app.useGlobalPipes(
-    new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
+    new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true })
   );
+  app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
+
   app.use(morgan("dev"));
   app.use(compression());
   app.use(helmet());
