@@ -6,6 +6,6 @@ import { HttpExceptionFilter } from 'src/libs/exception-filters/http-exception.f
 export class AuthController {
     @Post("signup")
     signUp() {
-
+        
     }
 }
