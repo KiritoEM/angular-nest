@@ -5,6 +5,8 @@ import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angu
 import { MatIconModule } from '@angular/material/icon';
 import { LoginService } from './login.service';
 import { LoginUserDto } from './login.dto';
+import { TokenService } from '../../services/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,7 @@ export class LoginComponent {
   loginForm: any;
   passwordVisible: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, @Inject(LoginService) private loginService: LoginService) { }
+  constructor(private formBuilder: FormBuilder, @Inject(LoginService) private loginService: LoginService, @Inject(TokenService) private tokenService: TokenService, @Inject(Router) private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -39,6 +41,8 @@ export class LoginComponent {
       this.loginService.login(this.loginForm.value as LoginUserDto).subscribe({
         next: (data) => {
           console.log("User logged in", data);
+          this.tokenService.setToken(data.token);
+          this.router.navigate(['/']);
         },
         error: (err) => {
           console.error(err);
