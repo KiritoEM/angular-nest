@@ -2,6 +2,7 @@ import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as morgan from "morgan";
 import * as compression from "compression";
+import * as cors from "cors";
 import helmet from "helmet";
 import { config as DotenvConfig } from "dotenv";
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
@@ -30,6 +31,7 @@ async function bootstrap() {
   app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
 
   app.use(morgan("dev"));
+  app.use(cors())
   app.use(compression());
   app.use(helmet());
 
