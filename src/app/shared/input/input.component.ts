@@ -15,10 +15,9 @@ export class InputComponent {
   @Input() type: string = 'text';
   @Input() class: string = '';
   @Input() customErrorText: string = 'Ce champ est requis';
+  @Input() control: FormControl = new FormControl();
 
   @Output() valueChange = new EventEmitter<string>();
-
-  control: FormControl = new FormControl('', Validators.required);
 
   getClasses() {
     const baseClass = "base-input";

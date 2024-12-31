@@ -17,4 +17,8 @@ export class ButtonComponent {
   @Input()
   @HostBinding('class.btn-destructive')
   isDesctructive = false;
+
+  @Input()
+  @HostBinding('class.btn-disabled')
+  isDisabled = false
 }
