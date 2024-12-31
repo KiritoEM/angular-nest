@@ -1,12 +1,12 @@
-import { NgClass, NgIf } from '@angular/common';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
+import { Component, Input, Output, EventEmitter, TemplateRef, ContentChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
-  imports: [ReactiveFormsModule, NgIf, NgClass]
+  imports: [ReactiveFormsModule, NgIf, NgClass, NgTemplateOutlet]
 })
 export class InputComponent {
   @Input() label: string = '';
@@ -15,7 +15,9 @@ export class InputComponent {
   @Input() type: string = 'text';
   @Input() class: string = '';
   @Input() customErrorText: string = 'Ce champ est requis';
-  @Input() control: FormControl = new FormControl();
+  @Input() control: FormControl = new FormControl('', [Validators.required]);
+  @ContentChild(TemplateRef)
+  children!: TemplateRef<any> | null;
 
   @Output() valueChange = new EventEmitter<string>();
 

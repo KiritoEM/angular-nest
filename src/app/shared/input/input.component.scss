@@ -7,6 +7,7 @@
     background-color: hsl(var(--input));
     padding-left: 0.75rem;
     font-size: 0.875rem;
+    position: relative;
     --tw-ring-offset-color: hsl(var(--background));
 
     &:focus-within {

@@ -4,6 +4,11 @@
         <input [type]="type"
             class="bg-transparent w-full p-2 placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
             [formControl]="control" [attr.placeholder]="placeholder || 'Entre une valeur'" />
+
+        <!-- NOTE Icon -->
+        <div class="absolute right-3 top-1/2 -translate-y-1/2">
+            <ng-container *ngTemplateOutlet="children"></ng-container>
+        </div>
     </div>
     <div *ngIf="control.invalid && control.touched" class="text-destructive text-xs mt-2">
         {{customErrorText}}

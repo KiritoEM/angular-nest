@@ -2,15 +2,17 @@ import { Component, Input } from '@angular/core';
 import { InputComponent } from '../../shared/input/input.component';
 import { ButtonComponent } from '../../shared/button/button.component';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login',
-  imports: [InputComponent, ButtonComponent, ReactiveFormsModule],
+  imports: [InputComponent, ButtonComponent, ReactiveFormsModule, MatIconModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   loginForm: any;
+  passwordVisible: boolean = false;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -23,6 +25,10 @@ export class LoginComponent {
 
   getControl(name: string) {
     return this.loginForm.get(name) as FormControl
+  }
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
   }
 
   submitForm(): void {

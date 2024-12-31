@@ -7,8 +7,14 @@
             <app-input label="Adresse email" placeholder="Entrez votre email" [type]="'email'"
                 [control]="getControl('email')" customErrorText="L'email est requis">
             </app-input>
-            <app-input label="Mot de passe" placeholder="Entrez votre email" [type]="'password'"
-                [control]="getControl('password')" customErrorText="Le mot de passe est requis">
+            <app-input label="Mot de passe" placeholder="Entrez votre email"
+                [type]="passwordVisible ? 'text' : 'password'" [control]="getControl('password')"
+                customErrorText="Le mot de passe est requis">
+                <ng-template #children>
+                    <mat-icon class="mt-1 cursor-pointer" (click)="togglePasswordVisibility()">{{passwordVisible ?
+                        "visibility_off" :
+                        "visibility"}}</mat-icon>
+                </ng-template>
             </app-input>
             <p class="text-blue-500 text-sm text-end">Mot de passe oublié?</p>
             <button my-button class="mt-3" type="submit">Se connecter</button>
