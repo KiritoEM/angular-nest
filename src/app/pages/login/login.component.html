@@ -17,7 +17,7 @@
                 </ng-template>
             </app-input>
             <p class="text-blue-500 text-sm text-end">Mot de passe oublié?</p>
-            <button my-button class="mt-3" type="submit">Se connecter</button>
+            <button my-button class="mt-3" type="submit" [isDisabled]="!loginForm.valid">Se connecter</button>
         </form>
     </div>
 </div>

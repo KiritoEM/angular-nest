@@ -1,8 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Inject } from '@angular/core';
 import { InputComponent } from '../../shared/input/input.component';
 import { ButtonComponent } from '../../shared/button/button.component';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { LoginService } from './login.service';
+import { LoginUserDto } from './login.dto';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,7 @@ export class LoginComponent {
   loginForm: any;
   passwordVisible: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, @Inject(LoginService) private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -34,6 +36,14 @@ export class LoginComponent {
   submitForm(): void {
     if (this.loginForm?.valid) {
       console.log('Form data:', this.loginForm.value);
+      this.loginService.login(this.loginForm.value as LoginUserDto).subscribe({
+        next: (data) => {
+          console.log("User logged in", data);
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });
     }
   }
 }
