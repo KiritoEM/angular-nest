@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
-    constructor(@Inject(HttpClient) private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
     login(loginData: LoginUserDto): Observable<any> {
         return this.http.post(`${API_URL}/auth/signin`, { ...loginData })

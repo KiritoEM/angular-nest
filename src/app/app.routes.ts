@@ -5,6 +5,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AuthGuard } from './core/guard/auth.guard';
 import { RedirectGuard } from './core/guard/redirect.guard';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
+import { AddPokemonComponent } from './pages/add-pokemon/add-pokemon.component';
 
 export const routes: Routes = [
     { path: "", canActivate: [RedirectGuard], component: HomeComponent },
@@ -14,7 +15,8 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
         component: DashboardLayoutComponent,
         children: [
-            { path: "", component: DashboardComponent }
+            { path: "", component: DashboardComponent },
+            { path: "add-pokemon", component: AddPokemonComponent },
         ]
     }
 ];

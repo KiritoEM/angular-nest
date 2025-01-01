@@ -7,7 +7,7 @@ import { AuthGuard } from 'src/auth/guard/auth.guard';
 @Controller('pokemon')
 @UseGuards(AuthGuard)
 export class PokemonController {
-    constructor(@Inject(PokemonService) private pokemonService: PokemonService) { }
+    constructor(private pokemonService: PokemonService) { }
 
     @Post('create')
     async addNewPokemon(@Body() pokemonDto: CreatePokemonDto, @Req() req: Request, @Res() res: Response): Promise<Response> {

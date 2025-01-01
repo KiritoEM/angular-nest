@@ -18,7 +18,7 @@ export class LoginComponent {
   loginForm: any;
   passwordVisible: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, @Inject(LoginService) private loginService: LoginService, @Inject(TokenService) private tokenService: TokenService, @Inject(Router) private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private loginService: LoginService, private tokenService: TokenService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({

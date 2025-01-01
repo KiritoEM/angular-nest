@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonComponent } from '../../../shared/button/button.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-nav',
@@ -10,4 +11,9 @@ import { ButtonComponent } from '../../../shared/button/button.component';
 })
 export class DashboardNavComponent {
 
+  constructor(private router: Router) { }
+
+  navigateToAdd() {
+    this.router.navigate(["/dashboard/add-pokemon"])
+  }
 }

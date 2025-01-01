@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ButtonComponent } from '../../components/shared/button/button.component';
 import { MatIcon } from '@angular/material/icon';
 import { PokemonCardComponent } from '../../components/shared/cards/pokemon-card/pokemon-card.component';
-import { POKEMONS_MOCK } from '../../helpers/__mock__/pokemons.mock';
-import { Pokemon } from '../../components/shared/cards/pokemon-card/types';
 import { CommonModule, NgFor } from '@angular/common';
+import { DashboardService } from './dashboard.service';
+import { Pokemon } from '../../components/shared/cards/pokemon-card/types';
+import { API_URL } from '../../helpers/constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,10 +13,24 @@ import { CommonModule, NgFor } from '@angular/common';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
-export class DashboardComponent {
-  pokemons: Pokemon[] = POKEMONS_MOCK;
+export class DashboardComponent implements OnInit {
+  pokemons: Pokemon[] = [];
 
-  NgOnInit(): void {
-    console.log(this.pokemons);
+  constructor(private dashboardService: DashboardService) { }
+
+  ngOnInit(): void {
+    this.dashboardService.getAllPokemon().subscribe({
+      next: (data: any) => {
+        console.log(data.allPokemons);
+        this.pokemons = data.allPokemons;
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    })
+  }
+
+  formatImageName(imageURL: string) {
+    return `${API_URL}/static${imageURL}`
   }
 }

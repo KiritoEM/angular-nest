@@ -1,6 +1,8 @@
-<article class="pokemon-card w-full bg-input p-3 rounded-xl h-full">
+<article
+    class="pokemon-card w-full bg-input p-3 rounded-xl h-full hover:scale-110 transition-all duration-150 cursor-pointer">
     <div class="relative">
-        <img [src]="image_url" alt="pokemon-image" class="rounded-lg object-cover h-[200px] w-full">
+        <img crossorigin='anonymous' [src]="image_url" alt="pokemon-image"
+            class="rounded-lg object-cover h-[200px] w-full">
         <div class="p-3 rounded-full absolute top-3 right-3 flex items-center justify-center bg-white/20 backdrop-blur">
             <img src="/icons/heart.svg" alt="favorite-icon" class="w-5 cursor-pointer">
         </div>
