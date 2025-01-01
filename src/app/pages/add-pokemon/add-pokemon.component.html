@@ -1,0 +1,24 @@
+<div class="add-form flex justify-center">
+    <form class="w-full max-w-[500px] px-12 border-x border-b border-input py-16">
+        <div class="file-upload">
+            <input type="file" id="file-input" class="hidden" (change)="onChange($event)">
+
+            <div class="rounded-xl w-full py-7 bg-input p-5 flex flex-col gap-4 items-center" *ngIf="!file">
+                <label for="file-input"
+                    class="rounded-full bg-primary w-[56px] h-[56px] flex justify-center items-center cursor-pointer hover:bg-primary/80">
+                    <mat-icon class="text-white">
+                        upload
+                    </mat-icon>
+                </label>
+                <p class="text-white">Ajouter une photo en cliquant ci-dessus</p>
+            </div>
+
+            <div class="rounded-xl w-full bg-input flex flex-col gap-4 items-center overflow-hidden relative"
+                *ngIf="file">
+                <img [src]="previewURL" alt="Aperçu de l'image" class="max-w-fullrounded-lg object-cover h-[350px]">
+                <div class="w-12 flex items-center justify-center h-12 bg-primary rounded-full hover:bg-primary/80 cursor-pointer absolute top-6 right-6"
+                    (click)="resetInput()"><mat-icon class="text-white">close</mat-icon></div>
+            </div>
+        </div>
+    </form>
+</div>
