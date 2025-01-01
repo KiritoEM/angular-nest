@@ -41,7 +41,7 @@ async function bootstrap() {
   app.use(cors())
   app.use(compression());
   app.use(helmet());
-  app.use("/static", express.static(join(__dirname, '..', 'uploads', 'pokemon')))
+  app.use("/static/pokemon", express.static(join(__dirname, '..', 'uploads', 'pokemon')))
 
   await app.listen(process.env['PORT'] ?? 3000,
     () => {

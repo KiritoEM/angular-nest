@@ -6,7 +6,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { Pokemon } from '@prisma/client';
 
 export const POKEMON_PATH_UPLOAD = path.join(__dirname, "../../uploads", "pokemon");
-const ABSOLUTE_PATH_UPLOAD = "/uploads/pokemon"
+const ABSOLUTE_PATH_UPLOAD = "/pokemon";
 
 @Injectable()
 export class PokemonService {
