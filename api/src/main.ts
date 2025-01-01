@@ -9,6 +9,8 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import { AllExceptionsFilter } from './libs/exception-filters/all-exceptions.filter';
 import * as fileUpload from "express-fileupload";
+import * as express from "express";
+import { join } from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -39,6 +41,7 @@ async function bootstrap() {
   app.use(cors())
   app.use(compression());
   app.use(helmet());
+  app.use("/static", express.static(join(__dirname, '..', 'uploads', 'pokemon')))
 
   await app.listen(process.env['PORT'] ?? 3000,
     () => {

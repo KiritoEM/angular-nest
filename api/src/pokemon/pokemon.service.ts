@@ -71,9 +71,34 @@ export class PokemonService {
     async getAll(): Promise<Pokemon[] | []> {
         return await this.prisma.pokemon.findMany({
             include: {
-                abilities: true,
-                pokemon_types: true
-            }
+                abilities: {
+                    select: {
+                        ability: {
+                            select: {
+                                id: true,
+                                name: true,
+                                description: true,
+                            },
+                        },
+                    },
+                },
+                pokemon_types: {
+                    select: {
+                        pokemon_type: {
+                            select: {
+                                id: true,
+                                name: true,
+                            },
+                        },
+                    },
+                },
+            },
+        }).then((pokemons) => {
+            return pokemons.map((pokemon) => ({
+                ...pokemon,
+                abilities: pokemon.abilities.map((a) => a.ability),
+                pokemon_types: pokemon.pokemon_types.map((t) => t.pokemon_type)
+            }))
         });
     }
 }

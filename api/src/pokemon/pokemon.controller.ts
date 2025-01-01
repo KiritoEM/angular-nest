@@ -26,5 +26,4 @@ export class PokemonController {
 
         return res.status(201).json({ message: "All Pokemons fetched successfully !!!", allPokemons });
     }
-
 }
