@@ -8,6 +8,7 @@ import { config as DotenvConfig } from "dotenv";
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import { AllExceptionsFilter } from './libs/exception-filters/all-exceptions.filter';
+import * as fileUpload from "express-fileupload";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -30,6 +31,10 @@ async function bootstrap() {
   );
   app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
 
+  app.use(fileUpload({
+    useTempFiles: true,
+    tempFileDir: '/tmp/'
+  }));
   app.use(morgan("dev"));
   app.use(cors())
   app.use(compression());

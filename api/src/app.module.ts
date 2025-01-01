@@ -6,6 +6,8 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { JwtModule } from "@nestjs/jwt";
 import { JWT_EXPIRES_IN } from './helpers/constants';
+import { PokemonService } from './pokemon/pokemon.service';
+import { PokemonModule } from './pokemon/pokemon.module';
 
 @Module({
   imports: [PrismaModule, JwtModule.register({
@@ -15,8 +17,9 @@ import { JWT_EXPIRES_IN } from './helpers/constants';
   }),
     AuthModule,
     UsersModule,
+    PokemonModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, PokemonService],
 })
 export class AppModule { }

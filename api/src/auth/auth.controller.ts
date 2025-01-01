@@ -1,5 +1,4 @@
 import { Body, Controller, Post, Res, UseFilters } from '@nestjs/common';
-import { HttpExceptionFilter } from 'src/libs/exception-filters/http-exception.filter';
 import { CreateUserDto, LoginUserDto } from 'src/users/dto/user.dto';
 import { AuthService } from './auth.service';
 import { Response } from 'express';
