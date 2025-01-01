@@ -15,43 +15,43 @@
     &:hover {
         opacity: 0.8
     }
-}
 
-::ng-deep svg,
-::ng-deep img {
-    width: 24px;
-    height: 24px;
-    margin-top: -5px;
-    margin-bottom: -5px;
-}
-
-&:focus-visible {
-    outline: 3px solid hsl(var(--primary));
-    outline-offset: 2px;
-}
-
-&.btn-descructive {
-    background-color: hsl(var(--destructive));
-}
-
-&.btn-secondary {
-    background-color: hsl(var(--secondary));
-}
-
-&.btn-outline {
-    background-color: transparent;
-    color: hsl(var(--primary));
-    opacity: 80;
-
-    &:hover,
-    &:focus {
-        background-color: hsl(var(--primary));
-        opacity: 80;
-        color: hsl(var(--primary-foreground));
+    ::ng-deep svg,
+    ::ng-deep img {
+        width: 24px;
+        height: 24px;
+        margin-top: -5px;
+        margin-bottom: -5px;
     }
-}
 
-&.btn-disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
+    &:focus-visible {
+        outline: 3px solid hsl(var(--primary));
+        outline-offset: 2px;
+    }
+
+    &.btn-descructive {
+        background-color: hsl(var(--destructive));
+    }
+
+    &.btn-secondary {
+        background-color: hsl(var(--secondary));
+    }
+
+    &.btn-outline {
+        background-color: transparent;
+        color: hsl(var(--primary));
+        opacity: 80;
+
+        &:hover,
+        &:focus {
+            background-color: hsl(var(--primary));
+            opacity: 80;
+            color: hsl(var(--primary-foreground));
+        }
+    }
+
+    &.btn-disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
 }
