@@ -1,17 +1,22 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { CreatePokemonDto } from './dto/pokemon.dto';
-import { Pokemon, PrismaClient } from '@prisma/client';
-import path from 'path';
+import * as path from 'path';
 import { uploadFile } from 'src/helpers/file';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { Pokemon } from '@prisma/client';
 
 export const POKEMON_PATH_UPLOAD = path.join(__dirname, "../../uploads", "pokemon");
+const ABSOLUTE_PATH_UPLOAD = "/uploads/pokemon"
 
 @Injectable()
 export class PokemonService {
 
-    constructor(private prisma: PrismaClient) { }
+    constructor(private prisma: PrismaService) { }
 
     async create(pokemonData: CreatePokemonDto, userId: number, file: any): Promise<Pokemon | null> {
+        const abilities = JSON.parse(pokemonData.abilities);
+        const pokemonTypes = JSON.parse(pokemonData.pokemon_types);
+
         const pokemon = await this.prisma.pokemon.create({
             data: {
                 name: pokemonData.name,
@@ -21,21 +26,38 @@ export class PokemonService {
                         id: userId
                     }
                 },
-                image_url: `${POKEMON_PATH_UPLOAD}/${file.name}`,
+                image_url: `${ABSOLUTE_PATH_UPLOAD}/${file.name}`,
                 abilities: {
-                    createMany: {
-                        data: pokemonData.abilities
-                    }
+                    create: abilities.map((ability: any) => ({
+                        ability: {
+                            connectOrCreate: {
+                                where: { name: ability.name },
+                                create: {
+                                    name: ability.name,
+                                    description: ability.description,
+                                },
+                            },
+                        },
+                    })),
                 },
                 pokemon_types: {
-                    createMany: {
-                        data: pokemonData.pokemon_types
-                    }
-                }
+                    create: pokemonTypes.map((pokemonType: any) => ({
+                        pokemon_type: {
+                            connectOrCreate: {
+                                where: { name: pokemonType.name },
+                                create: {
+                                    name: pokemonType.name,
+                                },
+                            },
+                        },
+                    })),
+                },
             }
         })
 
-        /*Upload file in path*/
+        /*
+        Upload file in path
+        */
         try {
             uploadFile(file, POKEMON_PATH_UPLOAD)
         }
@@ -44,5 +66,14 @@ export class PokemonService {
         }
 
         return pokemon;
+    }
+
+    async getAll(): Promise<Pokemon[] | []> {
+        return await this.prisma.pokemon.findMany({
+            include: {
+                abilities: true,
+                pokemon_types: true
+            }
+        });
     }
 }

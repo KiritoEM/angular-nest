@@ -1,26 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNumber, IsString, IsUrl, IsDate, IsArray, ValidateNested } from "class-validator";
+import { IsNumber, IsString, IsUrl, IsDate } from "class-validator";
 import { Type } from "class-transformer";
-
-class Ability {
-    @ApiProperty()
-    @IsString()
-    readonly name: string;
-
-    @ApiProperty()
-    @IsString()
-    readonly description: string;
-}
-
-class PokemonType {
-    @ApiProperty()
-    @IsNumber()
-    readonly id: number;
-
-    @ApiProperty()
-    @IsString()
-    readonly name: string;
-}
+import { IsJSON } from "class-validator";
 
 export class PokemonEntity {
     @ApiProperty()
@@ -44,17 +25,15 @@ export class PokemonEntity {
     @Type(() => Date)
     readonly createdAt: Date;
 
-    @ApiProperty({ type: [Ability] })
-    @IsArray()
-    @ValidateNested({ each: true })
-    @Type(() => Ability)
-    readonly abilities: Ability[];
+    @ApiProperty()
+    @IsString()
+    @IsJSON()
+    readonly abilities: string;
 
-    @ApiProperty({ type: [PokemonType] })
-    @IsArray()
-    @ValidateNested({ each: true })
-    @Type(() => PokemonType)
-    readonly pokemon_types: PokemonType[];
+    @ApiProperty()
+    @IsString()
+    @IsJSON()
+    readonly pokemon_types: string;
 
     @ApiProperty()
     @IsNumber()

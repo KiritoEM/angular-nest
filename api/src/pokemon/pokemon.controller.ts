@@ -1,4 +1,4 @@
-import { Body, Controller, Inject, NotFoundException, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { CreatePokemonDto } from './dto/pokemon.dto';
 import { Response } from 'express';
 import { PokemonService } from './pokemon.service';
@@ -18,6 +18,13 @@ export class PokemonController {
         const pokemon = await this.pokemonService.create(pokemonDto, parseInt(req["user"].id), (req as any).files.pokemon);
 
         return res.status(201).json({ message: "Pokemon added successfully !!!", pokemon });
+    }
+
+    @Get('getAll')
+    async getAllPokemon(@Res() res: Response) {
+        const allPokemons = await this.pokemonService.getAll();
+
+        return res.status(201).json({ message: "All Pokemons fetched successfully !!!", allPokemons });
     }
 
 }
