@@ -1,0 +1,23 @@
+<nav class="border-b border-input">
+    <div class="container mx-auto px-3 py-5 flex justify-between items-center">
+        <h6 class="text-white font-bold text-xl">Pokemon-app</h6>
+
+        <div
+            class="search-input h-[46px] px-3 rounded-xl bg-input w-full max-w-[350px] flex gap-1 items-center focus:border focus:border-primary">
+            <mat-icon class="cursor-pointer text-white/60">search</mat-icon>
+            <input type="text"
+                class="bg-transparent text-[14px] text-white w-full p-3 placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                placeholder="Rechercher un pokemon...">
+        </div>
+
+        <div class="actions flex gap-7 items-center">
+            <button my-button class="action-btn"><mat-icon class="cursor-pointer text-xl -mt-1">add</mat-icon> Ajouter
+                pokemon</button>
+            <div class="avatar flex items-center gap-2">
+                <img src="/avatar.jpg" alt="avatar" class="w-[43px] h-[43px] rounded-xl">
+                <p class="text-white">Loick Emadisson</p>
+                <mat-icon class="cursor-pointer text-xl -mt-1 text-white rotate-[-90deg]">chevron_left</mat-icon>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,11 +1,11 @@
 import { Component, inject, Inject } from '@angular/core';
-import { InputComponent } from '../../shared/input/input.component';
-import { ButtonComponent } from '../../shared/button/button.component';
+import { InputComponent } from '../../components/shared/input/input.component';
+import { ButtonComponent } from '../../components/shared/button/button.component';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { LoginService } from './login.service';
 import { LoginUserDto } from './login.dto';
-import { TokenService } from '../../services/token.service';
+import { TokenService } from '../../core/services/token.service';
 import { Router } from '@angular/router';
 
 @Component({
