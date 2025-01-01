@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { CookieService } from 'ngx-cookie-service';
 import { TOKEN_KEY } from "../helpers/constants";
+import { jwtDecode, JwtPayload } from "jwt-decode";
 
 @Injectable({ providedIn: 'root' })
 export class TokenService {
@@ -17,5 +18,12 @@ export class TokenService {
 
     removeToken(): void {
         this.cookieService.delete(TOKEN_KEY, '/');
+    }
+
+    isTokenValid(token: string) {
+        const decoded = jwtDecode<JwtPayload>(token);
+        const now = Math.floor(Date.now() / 1000);
+
+        return decoded.exp ? decoded.exp > now : false;
     }
 }
