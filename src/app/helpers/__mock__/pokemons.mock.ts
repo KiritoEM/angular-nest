@@ -3,7 +3,7 @@ export const POKEMONS_MOCK = [
         id: 1,
         name: "Pikachu",
         description: "A small electric mouse Pokémon.",
-        image_url: "https://example.com/images/pikachu.png",
+        image_url: "/pikachu.webp",
         createdAt: new Date(),
         abilities: [
             {
@@ -29,7 +29,7 @@ export const POKEMONS_MOCK = [
         id: 2,
         name: "Charizard",
         description: "A fire-breathing dragon Pokémon.",
-        image_url: "https://example.com/images/charizard.png",
+        image_url: "/charizard-.avif",
         createdAt: new Date(),
         abilities: [
             {
@@ -59,7 +59,7 @@ export const POKEMONS_MOCK = [
         id: 3,
         name: "Bulbasaur",
         description: "A grass/poison Pokémon with a plant bulb on its back.",
-        image_url: "https://example.com/images/bulbasaur.png",
+        image_url: "/bulbusaur.avif",
         createdAt: new Date(),
         abilities: [
             {
@@ -84,7 +84,7 @@ export const POKEMONS_MOCK = [
         id: 4,
         name: "Squirtle",
         description: "A small turtle Pokémon with water-type abilities.",
-        image_url: "https://example.com/images/squirtle.png",
+        image_url: "/Squirtle.png",
         createdAt: new Date(),
         abilities: [
             {
@@ -105,7 +105,7 @@ export const POKEMONS_MOCK = [
         id: 5,
         name: "Jigglypuff",
         description: "A round, pink Pokémon known for its singing.",
-        image_url: "https://example.com/images/jigglypuff.png",
+        image_url: "/jigglypuff.webp",
         createdAt: new Date(),
         abilities: [
             {

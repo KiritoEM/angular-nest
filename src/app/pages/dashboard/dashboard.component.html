@@ -2,13 +2,16 @@
     <header class="flex items-center justify-between">
         <h2 class="text-white text-2xl font-semibold">Liste de pokemons</h2>
 
-        <button my-button class="filter-btn">
+        <button my-button [isOutline]="true">
             <mat-icon class="cursor-pointer text-2xl -mt-2 text-white">tune</mat-icon>
             Filtrer
         </button>
     </header>
 
-    <div class="grid grid-cols-4 mt-4">
-        <app-pokemon-card></app-pokemon-card>
+    <div class="grid grid-cols-4 mt-4 gap-6">
+        <app-pokemon-card *ngFor="let pokemon of pokemons" [name]="pokemon.name" [description]="pokemon.description"
+            [image_url]="pokemon.image_url" [createdAt]="pokemon.createdAt" [abilities]="pokemon.abilities"
+            [pokemon_types]="pokemon.pokemon_types">
+        </app-pokemon-card>
     </div>
 </div>

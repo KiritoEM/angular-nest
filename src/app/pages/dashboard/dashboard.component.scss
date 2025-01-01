@@ -1,4 +1,5 @@
 .filter-btn {
-    background-color: hsl(var(--input));
+    border: 1px solid hsl(var(--input));
     border: none;
+    background-color: transparent;
 }
