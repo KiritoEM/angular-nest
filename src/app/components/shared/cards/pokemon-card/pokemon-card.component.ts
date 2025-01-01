@@ -1,10 +1,11 @@
-import { NgFor, NgIf } from '@angular/common';
+import { NgFor, NgIf, NgStyle } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Ability, Pokemon, PokemonType } from "./types";
+import { POKEMON_AVALAIBLE_TYPES } from '../../../../helpers/constants';
 
 @Component({
   selector: 'app-pokemon-card',
-  imports: [NgFor, NgIf],
+  imports: [NgFor, NgIf, NgStyle],
   templateUrl: './pokemon-card.component.html',
   styleUrl: './pokemon-card.component.scss'
 })
@@ -15,5 +16,10 @@ export class PokemonCardComponent {
   @Input() createdAt!: Date;
   @Input() abilities: Ability[] = [];
   @Input() pokemon_types: PokemonType[] = [];
-isLast: any;
+
+  typeColorMap: Record<string, string> = POKEMON_AVALAIBLE_TYPES;
+
+  getTypeColor(type: string) {
+    return this.typeColorMap[type.toLowerCase()] || "#A8A77A";
+  }
 }

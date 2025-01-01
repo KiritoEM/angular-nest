@@ -15,7 +15,8 @@
             </span>
         </p>
         <div class="types flex flex-wrap gap-3 mt-2">
-            <div *ngFor="let type of pokemon_types" class="rounded-full text-sm text-white p-2 px-3 bg-yellow-600">
+            <div *ngFor="let type of pokemon_types" class="rounded-full text-sm text-white p-2 px-3"
+                [ngStyle]="{'background-color': getTypeColor(type.name)}">
                 {{type.name}}
             </div>
         </div>
