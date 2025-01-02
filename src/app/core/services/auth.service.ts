@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { API_URL } from "../../helpers/constants";
+import { API_URL } from "../helpers/constants";
 import { UserModel } from "../models/user.model";
 
 export type LoginUserDto = Pick<UserModel, "email" | "password">

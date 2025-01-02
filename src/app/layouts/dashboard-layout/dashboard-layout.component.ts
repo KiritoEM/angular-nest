@@ -6,7 +6,6 @@ import { DashboardNavComponent } from '../../components/features/dashboard/dashb
   selector: 'app-dashboard-layout',
   imports: [RouterOutlet, DashboardNavComponent],
   templateUrl: './dashboard-layout.component.html',
-  styleUrl: './dashboard-layout.component.scss'
 })
 export class DashboardLayoutComponent {
 

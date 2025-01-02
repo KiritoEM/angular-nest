@@ -1,14 +1,14 @@
 import { NgFor, NgIf, NgStyle } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
-import { InputComponent } from '../../components/shared/input/input.component';
+import { InputComponent } from '../../../components/shared/input/input.component';
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Fields, FormType } from './types';
-import { TextareaComponent } from '../../components/shared/textarea/textarea.component';
-import { ButtonComponent } from '../../components/shared/button/button.component';
-import { POKEMON_AVALAIBLE_TYPES } from '../../helpers/constants';
-import { PokemonService } from '../../core/services/pokemon.service';
-import { AddPokemonDTO } from '../../core/models/pokemon.model';
+import { TextareaComponent } from '../../../components/shared/textarea/textarea.component';
+import { ButtonComponent } from '../../../components/shared/button/button.component';
+import { POKEMON_AVALAIBLE_TYPES } from '../../../core/helpers/constants';
+import { PokemonService } from '../../../core/services/pokemon.service';
+import { AddPokemonDTO } from '../../../core/models/pokemon.model';
 
 @Component({
   selector: 'app-add-pokemon',

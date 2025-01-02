@@ -1,7 +1,7 @@
 import { NgFor, NgIf, NgStyle } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Ability, Pokemon, PokemonType } from "./types";
-import { POKEMON_AVALAIBLE_TYPES } from '../../../../helpers/constants';
+import { POKEMON_AVALAIBLE_TYPES } from '../../../../core/helpers/constants';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { Router } from '@angular/router';
 

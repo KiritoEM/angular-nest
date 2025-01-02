@@ -7,7 +7,6 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
   selector: 'app-root',
   imports: [RouterOutlet, CommonModule, NgxSkeletonLoaderModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'pokemon-app';

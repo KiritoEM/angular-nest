@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { CookieService } from 'ngx-cookie-service';
-import { TOKEN_KEY } from "../../helpers/constants";
+import { TOKEN_KEY } from "../helpers/constants";
 import { jwtDecode, JwtPayload } from "jwt-decode";
 
 interface UserJWTPayload extends JwtPayload {

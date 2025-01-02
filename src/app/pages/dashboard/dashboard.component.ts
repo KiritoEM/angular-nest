@@ -4,7 +4,7 @@ import { MatIcon } from '@angular/material/icon';
 import { PokemonCardComponent } from '../../components/shared/cards/pokemon-card/pokemon-card.component';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Pokemon } from '../../components/shared/cards/pokemon-card/types';
-import { API_URL } from '../../helpers/constants';
+import { API_URL } from '../../core/helpers/constants';
 import { SearchService } from '../../core/services/search.service';
 import { PokemonService } from '../../core/services/pokemon.service';
 

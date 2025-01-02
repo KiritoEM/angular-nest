@@ -1,14 +1,13 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
-import { HomeComponent } from './pages/home/home.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AuthGuard } from './core/guard/auth.guard';
 import { RedirectGuard } from './core/guard/redirect.guard';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
-import { AddPokemonComponent } from './pages/add-pokemon/add-pokemon.component';
+import { AddPokemonComponent } from './pages/dashboard/add-pokemon/add-pokemon.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { SignupComponent } from './pages/signup/signup.component';
-import { PokemonDetailsComponent } from './pages/pokemon-details/pokemon-details.component';
+import { PokemonDetailsComponent } from './pages/dashboard/pokemon-details/pokemon-details.component';
 
 export const routes: Routes = [
     { path: "", canActivate: [RedirectGuard], component: LoginComponent },
