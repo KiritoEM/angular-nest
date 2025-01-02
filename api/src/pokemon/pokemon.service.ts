@@ -17,6 +17,10 @@ export class PokemonService {
         const abilities = JSON.parse(pokemonData.abilities);
         const pokemonTypes = JSON.parse(pokemonData.pokemon_types);
 
+        if (await this.findOne(pokemonData.name.toLowerCase())) {
+            throw new Error("Le pokemon existe déja")
+        }
+
         const pokemon = await this.prisma.pokemon.create({
             data: {
                 name: pokemonData.name,
@@ -100,5 +104,13 @@ export class PokemonService {
                 pokemon_types: pokemon.pokemon_types.map((t) => t.pokemon_type)
             }))
         });
+    }
+
+    async findOne(name: string): Promise<Pokemon | null> {
+        return await this.prisma.pokemon.findUnique({
+            where: {
+                name: name
+            }
+        })
     }
 }

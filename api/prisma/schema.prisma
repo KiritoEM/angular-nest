@@ -28,7 +28,7 @@ model User {
 
 model Pokemon {
   id          Int                 @id @default(autoincrement())
-  name        String
+  name        String              @unique()
   description String              @db.VarChar(255)
   image_url   String
   createdAt   DateTime            @default(now())
@@ -38,7 +38,7 @@ model Pokemon {
   user_id     Int
 
   @@map("pokemon")
-  @@unique([id])
+  @@unique([id, name])
 }
 
 model PokemonTypes {

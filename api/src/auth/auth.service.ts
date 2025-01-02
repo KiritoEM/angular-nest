@@ -9,7 +9,8 @@ export class AuthService {
 
     constructor(private usersService: UsersService, private jwtService: JwtService) { }
     async createUser(userData: CreateUserDto) {
-        if (this.usersService.findOne(userData.email)) {
+        console.log(userData)
+        if (await this.usersService.findOne(userData.email)) {
             throw new ForbiddenException("User already exists");
         }
 
