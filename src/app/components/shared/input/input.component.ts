@@ -10,12 +10,12 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 })
 export class InputComponent {
   @Input() label: string = '';
-  @Input() placeholder: string = 'Entrer une valeur';
+  @Input({ required: true }) placeholder: string = 'Entrer une valeur';
   @Input() name: string = '';
   @Input() type: string = 'text';
   @Input() class: string = '';
   @Input() customErrorText: string = 'Ce champ est requis';
-  @Input() control: FormControl = new FormControl('', [Validators.required]);
+  @Input({ required: true }) control: FormControl = new FormControl('', [Validators.required]);
   @ContentChild(TemplateRef)
   children!: TemplateRef<any> | null;
 

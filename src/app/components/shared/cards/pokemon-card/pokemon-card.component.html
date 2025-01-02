@@ -1,13 +1,21 @@
 <article
     class="pokemon-card w-full bg-input p-3 rounded-xl h-full hover:scale-110 transition-all duration-150 cursor-pointer">
-    <div class="relative">
+    <div class="relative" *ngIf="!isLoading">
         <img crossorigin='anonymous' [src]="image_url" alt="pokemon-image"
             class="rounded-lg object-cover h-[200px] w-full">
         <div class="p-3 rounded-full absolute top-3 right-3 flex items-center justify-center bg-white/20 backdrop-blur">
             <img src="/icons/heart.svg" alt="favorite-icon" class="w-5 cursor-pointer">
         </div>
     </div>
-    <div class="flex flex-col gap-[5px] mt-4">
+
+    <!-- Skeletons -->
+    <div class="relative" *ngIf="isLoading">
+        <ngx-skeleton-loader *ngIf="isLoading" appearance="line" animation="pulse"
+            [theme]="{ width: '100%', height: '200px', borderRadius: '11px'}">
+        </ngx-skeleton-loader>
+    </div>
+
+    <div class="flex flex-col gap-[5px] mt-4" *ngIf="!isLoading">
         <h3 class="text-white text-xl name">{{name}}</h3>
         <p class="text-white/80 line-clamp-2 text-sm cursor-pointer description">{{description}}</p>
         <p class="abilities text-white">
@@ -22,5 +30,20 @@
                 {{type.name}}
             </div>
         </div>
+    </div>
+
+    <!-- Skeletons -->
+    <div class="flex flex-col gap-[5px] mt-4" *ngIf="isLoading">
+        <ngx-skeleton-loader *ngIf="isLoading" appearance="line" animation="pulse"
+            [theme]="{ width: '36%', height: '15px', borderRadius: '11px'}">
+        </ngx-skeleton-loader>
+
+        <ngx-skeleton-loader *ngIf="isLoading" appearance="line" animation="pulse"
+            [theme]="{ width: '100%', height: '40px', borderRadius: '11px'}">
+        </ngx-skeleton-loader>
+
+        <ngx-skeleton-loader *ngIf="isLoading" appearance="circle" animation="pulse"
+            [theme]="{ width: '70px', height: '40px', borderRadius: '11px'}">
+        </ngx-skeleton-loader>
     </div>
 </article>

@@ -11,7 +11,7 @@
     <div class="grid grid-cols-4 mt-4 gap-6">
         <app-pokemon-card *ngFor="let pokemon of pokemons" [name]="pokemon.name" [description]="pokemon.description"
             [image_url]="formatImageName(pokemon.image_url)" [createdAt]="pokemon.createdAt"
-            [abilities]="pokemon.abilities" [pokemon_types]="pokemon.pokemon_types">
+            [abilities]="pokemon.abilities" [pokemon_types]="pokemon.pokemon_types" [isLoading]="isLoading">
         </app-pokemon-card>
     </div>
 </div>

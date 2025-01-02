@@ -15,6 +15,7 @@ import { API_URL } from '../../helpers/constants';
 })
 export class DashboardComponent implements OnInit {
   pokemons: Pokemon[] = [];
+  isLoading: boolean = true;
 
   constructor(private dashboardService: DashboardService) { }
 
@@ -23,6 +24,10 @@ export class DashboardComponent implements OnInit {
       next: (data: any) => {
         console.log(data.allPokemons);
         this.pokemons = data.allPokemons;
+
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 1200)
       },
       error: (err) => {
         console.error(err);
