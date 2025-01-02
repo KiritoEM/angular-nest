@@ -40,7 +40,6 @@ export class DashboardNavComponent implements OnInit {
 
     this.userService.getUser(idFromPayload as number).subscribe({
       next: (data) => {
-        console.log(data.user);
         this.user = data.user;
 
         setTimeout(() => {

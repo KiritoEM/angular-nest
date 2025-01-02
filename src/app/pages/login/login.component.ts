@@ -38,10 +38,8 @@ export class LoginComponent {
 
   submitForm(): void {
     if (this.loginForm?.valid) {
-      console.log('Form data:', this.loginForm.value);
       this.loginService.login(this.loginForm.value as LoginUserDto).subscribe({
         next: (data) => {
-          console.log("User logged in", data);
           this.tokenService.setToken(data.token);
           this.router.navigate(['/dashboard']);
         },

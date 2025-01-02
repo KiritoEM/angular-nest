@@ -1,10 +1,17 @@
 <div class="pokemon-details flex gap-14 items-start mt-12 container mx-auto px-16">
-    <div class="image w-[45%]">
+    <div class="image w-[45%]" *ngIf="!isLoading">
         <img crossorigin='anonymous' [src]="formatImageName(pokemon?.image_url)" alt="pokemon-image"
             class="rounded-xl h-[450px] object-cover">
     </div>
 
-    <div class="details flex flex-col gap-5 mt-7 flex-1">
+    <!-- Skeletons -->
+    <div class="image w-[45%]" *ngIf="isLoading">
+        <ngx-skeleton-loader appearance="line" animation="pulse"
+            [theme]="{ width: '100%', height: '500px', borderRadius: '11px'}">
+        </ngx-skeleton-loader>
+    </div>
+
+    <div class="details flex flex-col gap-5 mt-7 flex-1" *ngIf="!isLoading">
         <h2 class="text-white text-3xl">{{pokemon?.name}}</h2>
         <p class="text-white/80">{{pokemon?.description}}</p>
 
@@ -29,5 +36,24 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Skeletons -->
+    <div class="details flex flex-col gap-5 mt-7 flex-1" *ngIf="isLoading">
+        <ngx-skeleton-loader appearance="line" animation="pulse"
+            [theme]="{ width: '40%', height: '17px', borderRadius: '11px'}">
+        </ngx-skeleton-loader>
+
+        <ngx-skeleton-loader appearance="line" animation="pulse"
+            [theme]="{ width: '90%', height: '50px', borderRadius: '11px'}">
+        </ngx-skeleton-loader>
+
+        <ngx-skeleton-loader appearance="line" animation="pulse"
+            [theme]="{ width: '100%', height: '180px', borderRadius: '11px'}">
+        </ngx-skeleton-loader>
+
+        <ngx-skeleton-loader appearance="line" animation="pulse"
+            [theme]="{ width: '60%', height: '50px', borderRadius: '11px'}">
+        </ngx-skeleton-loader>
     </div>
 </div>

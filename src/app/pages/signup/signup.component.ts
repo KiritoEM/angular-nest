@@ -38,11 +38,9 @@ export class SignupComponent {
   }
 
   submitForm(): void {
-    console.log(this.signupForm.value)
     if (this.signupForm?.valid) {
       this.signupService.signup(this.signupForm.value as SignupDTO).subscribe({
         next: (data) => {
-          console.log("Account created successfull !!!", data);
           this.tokenService.setToken(data.token);
           this.router.navigate(['/dashboard']);
         },

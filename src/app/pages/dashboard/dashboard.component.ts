@@ -21,15 +21,17 @@ export class DashboardComponent implements OnInit {
   isSearch: boolean = false;
   isSearchEmpty: boolean = false;
   searchValue: string = "";
+  isEmpty: boolean = false;
 
   constructor(private dashboardService: DashboardService, private searchService: SearchService) { }
 
   ngOnInit(): void {
     this.dashboardService.getAllPokemon().subscribe({
       next: (data: any) => {
-        console.log(data.allPokemons);
         this.pokemons = data.allPokemons;
         this.filteredPokemons = [...this.pokemons];
+
+        this.isEmpty = this.filteredPokemons.length === 0;
 
         setTimeout(() => {
           this.isLoading = false;

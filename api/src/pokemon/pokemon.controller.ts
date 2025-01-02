@@ -20,8 +20,19 @@ export class PokemonController {
         return res.status(201).json({ message: "Pokemon added successfully !!!", pokemon });
     }
 
+    @Get('getAll')
+    async getAllPokemon(@Res() res: Response) {
+        const allPokemons = await this.pokemonService.getAll();
+
+        if (!allPokemons) {
+            return res.status(404).json("No pokemon !!!");
+        }
+
+        return res.status(200).json({ message: "All Pokemon fetched successfully", allPokemons });
+    }
+
     @Get(':id')
-    async getAllPokemon(@Param('id') id: string, @Res() res: Response) {
+    async getPokemon(@Param('id') id: string, @Res() res: Response) {
         const pokemon = await this.pokemonService.findById(parseInt(id));
 
         if (!pokemon) {

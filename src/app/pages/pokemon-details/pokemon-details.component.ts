@@ -3,11 +3,12 @@ import { PokemonService } from './pokemon.service';
 import { Pokemon } from '../../components/shared/cards/pokemon-card/types';
 import { ActivatedRoute } from '@angular/router';
 import { API_URL, POKEMON_AVALAIBLE_TYPES } from '../../helpers/constants';
-import { NgFor, NgStyle } from '@angular/common';
+import { NgFor, NgIf, NgStyle } from '@angular/common';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @Component({
   selector: 'app-pokemon-details',
-  imports: [NgFor, NgStyle],
+  imports: [NgFor, NgStyle, NgxSkeletonLoaderModule, NgIf],
   templateUrl: './pokemon-details.component.html',
   styleUrl: './pokemon-details.component.scss'
 })
@@ -23,7 +24,6 @@ export class PokemonDetailsComponent implements OnInit {
     this.route.paramMap.subscribe({
       next: (params) => {
         this.id = params.get("pokemonId") as string
-        console.log("id: ", this.id)
       },
       error: (err) => {
         console.error(err);
@@ -32,7 +32,6 @@ export class PokemonDetailsComponent implements OnInit {
 
     this.pokemonService.getOne(parseInt(this.id)).subscribe({
       next: (data: any) => {
-        console.log(data.pokemon);
         this.pokemon = data.pokemon;
 
         setTimeout(() => {

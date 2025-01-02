@@ -1,5 +1,6 @@
 <article
-    class="pokemon-card w-full bg-input p-3 rounded-xl h-full hover:scale-110 transition-all duration-150 cursor-pointer">
+    class="pokemon-card w-full bg-input p-3 rounded-xl h-full hover:scale-110 transition-all duration-150 cursor-pointer"
+    (click)="navigateToDetail()">
     <div class="relative" *ngIf="!isLoading">
         <img crossorigin='anonymous' [src]="image_url" alt="pokemon-image"
             class="rounded-lg object-cover h-[200px] w-full">

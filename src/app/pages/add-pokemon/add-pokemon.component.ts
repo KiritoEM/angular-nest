@@ -93,10 +93,8 @@ export class AddPokemonComponent implements OnInit {
     }
 
     if (this.addForm?.valid && this.file) {
-      console.log("AddForm value: ", this.addForm?.value);
       this.addPokemonService.addPokemon(this.addForm?.value as AddPokemonDTO, this.file).subscribe({
         next: (data) => {
-          console.log("Pokemon added : ", data.pokemon);
           this.addForm.reset();
           this.resetInput();
           alert("Pokemon ajouté avec succés !!!");
