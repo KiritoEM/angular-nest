@@ -9,6 +9,7 @@ export interface User {
 }
 
 export interface Pokemon {
+user: any;
     id: number;
     name: string;
     description: string;

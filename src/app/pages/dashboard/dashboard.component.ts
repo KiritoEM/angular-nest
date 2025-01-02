@@ -31,6 +31,8 @@ export class DashboardComponent implements OnInit {
         this.pokemons = data.allPokemons;
         this.filteredPokemons = [...this.pokemons];
 
+        console.log(this.pokemons)
+
         this.isEmpty = this.filteredPokemons.length === 0;
 
         setTimeout(() => {

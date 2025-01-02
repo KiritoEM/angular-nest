@@ -12,7 +12,7 @@
         <app-pokemon-card *ngFor="let pokemon of pokemons" [name]="pokemon.name" [description]="pokemon.description"
             [image_url]="formatImageName(pokemon.image_url)" [createdAt]="pokemon.createdAt"
             [abilities]="pokemon.abilities" [pokemon_types]="pokemon.pokemon_types" [isLoading]="isLoading"
-            [id]="pokemon.id">
+            [id]="pokemon.id" [author]="pokemon.user.username">
         </app-pokemon-card>
     </div>
 
@@ -20,7 +20,7 @@
         <app-pokemon-card *ngFor="let pokemon of filteredPokemons" [name]="pokemon.name"
             [description]="pokemon.description" [image_url]="formatImageName(pokemon.image_url)"
             [createdAt]="pokemon.createdAt" [abilities]="pokemon.abilities" [pokemon_types]="pokemon.pokemon_types"
-            [isLoading]="isLoading" [id]="pokemon.id">
+            [isLoading]="isLoading" [id]="pokemon.id" [author]="pokemon.user.username">
         </app-pokemon-card>
     </div>
 

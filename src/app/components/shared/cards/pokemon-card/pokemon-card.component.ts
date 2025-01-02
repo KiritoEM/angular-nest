@@ -12,10 +12,12 @@ import { Router } from '@angular/router';
   styleUrl: './pokemon-card.component.scss'
 })
 export class PokemonCardComponent implements OnInit {
+  user: any;
 
   constructor(private router: Router) { }
 
   @Input({ required: true }) name: string = "";
+  @Input({ required: true }) author: string = "";
   @Input({ required: true }) description: string = "";
   @Input({ required: true }) image_url: string = "";
   @Input({ required: true }) createdAt!: Date;

@@ -96,6 +96,13 @@ export class PokemonService {
                         },
                     },
                 },
+                user: {
+                    select: {
+                        id: true,
+                        username: true,
+                        email: true
+                    }
+                }
             },
         }).then((pokemons) => {
             return pokemons.map((pokemon) => ({
