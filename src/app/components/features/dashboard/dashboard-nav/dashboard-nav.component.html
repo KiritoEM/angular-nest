@@ -1,7 +1,7 @@
 <nav class="border-b border-input sticky top-0 bg-[#141414] z-40">
     <div class="container mx-auto px-3 py-5 flex justify-between items-center">
 
-        <a routerLink="/">
+        <a routerLink="/dashboard">
             <h6 class="text-white font-bold text-xl">Pokédex</h6>
         </a>
 
@@ -22,15 +22,17 @@
                 <ng-template #trigger>
                     <div class="avatar flex items-center gap-2">
                         <img src="/avatar.jpg" alt="avatar" class="w-[43px] h-[43px] rounded-xl">
-                        <p class="text-white">Loick Emadisson</p>
+                        <p class="text-white">{{user?.username}}</p>
                         <mat-icon
                             class="cursor-pointer text-xl -mt-1 text-white rotate-[-90deg]">chevron_left</mat-icon>
                     </div>
                 </ng-template>
 
                 <!-- Content -->
-                <div class="content">
-                     <mat-icon>logout</mat-icon>
+                <div class="content p-2 flex gap-3 items-center text-white cursor-pointer hover:bg-primary/50 rounded-md"
+                    (click)="logout()">
+                    <mat-icon class="text-white">logout</mat-icon>
+                    Se déconnecter
                 </div>
             </app-dropdown>
         </div>

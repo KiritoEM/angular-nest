@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
         const token = this.tokenService.getToken();
 
         if (!token) {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/']);
             return false;
         }
 
@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
             return true;
         }
 
-        this.router.navigate(['/login']);
+        this.router.navigate(['/']);
         return false;
     }
 }

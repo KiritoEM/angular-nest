@@ -6,10 +6,12 @@ import { AuthGuard } from './core/guard/auth.guard';
 import { RedirectGuard } from './core/guard/redirect.guard';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
 import { AddPokemonComponent } from './pages/add-pokemon/add-pokemon.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 export const routes: Routes = [
-    { path: "", canActivate: [RedirectGuard], component: HomeComponent },
-    { path: "login", canActivate: [RedirectGuard], component: LoginComponent },
+    { path: "", canActivate: [RedirectGuard], component: LoginComponent },
+    { path: "signup", canActivate: [RedirectGuard], component: SignupComponent },
     {
         path: "dashboard",
         canActivate: [AuthGuard],
@@ -18,5 +20,6 @@ export const routes: Routes = [
             { path: "", component: DashboardComponent },
             { path: "add-pokemon", component: AddPokemonComponent },
         ]
-    }
+    },
+    { path: "**", component: NotFoundComponent }
 ];

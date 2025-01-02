@@ -102,6 +102,7 @@ export class AddPokemonComponent implements OnInit {
           alert("Pokemon ajouté avec succés !!!");
         },
         error: (err) => {
+          alert("Le pokemon existe déja !!!");
           console.error(err);
         }
       }

@@ -2,7 +2,7 @@
     <div (click)="toggleDropdown()">
         <ng-container *ngTemplateOutlet="trigger"></ng-container>
     </div>
-    <div class="dropdown__content absolute rounded-lg bg-input mt-7 rounded- p-4 max-w-[400px] -left-7 w-full" *ngIf="isDropdownVisible">
+    <div class="dropdown__content absolute rounded-lg bg-input mt-7 rounded- p-4 max-w-[300px] -left-7 w-full" *ngIf="isDropdownVisible">
         <!-- Content -->
         <ng-content></ng-content>
     </div>

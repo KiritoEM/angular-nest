@@ -21,7 +21,7 @@ export const jwtInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, nex
       if (error.status === 401 || error.status === 403) {
         tokenService.removeToken();
 
-        router.navigate(['/login']);
+        router.navigate(['/']);
       }
       return throwError(() => error);
     })

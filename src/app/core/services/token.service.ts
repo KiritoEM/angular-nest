@@ -3,6 +3,10 @@ import { CookieService } from 'ngx-cookie-service';
 import { TOKEN_KEY } from "../../helpers/constants";
 import { jwtDecode, JwtPayload } from "jwt-decode";
 
+interface UserJWTPayload extends JwtPayload {
+    id: number;
+}
+
 @Injectable({ providedIn: 'root' })
 export class TokenService {
 
@@ -25,5 +29,12 @@ export class TokenService {
         const now = Math.floor(Date.now() / 1000);
 
         return decoded.exp ? decoded.exp > now : false;
+    }
+
+    getId(token: string) {
+        const decoded = jwtDecode<UserJWTPayload>(token);
+        const id = Number(decoded.id);
+
+        return id ? id : null;
     }
 }

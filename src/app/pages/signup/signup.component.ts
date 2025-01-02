@@ -2,34 +2,35 @@ import { Component, inject, Inject } from '@angular/core';
 import { InputComponent } from '../../components/shared/input/input.component';
 import { ButtonComponent } from '../../components/shared/button/button.component';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
-import { LoginService } from './login.service';
-import { LoginUserDto } from './login.dto';
+import { SignupService } from './signup.service';
+import { SignupDTO } from './signup.dto';
 import { TokenService } from '../../core/services/token.service';
 import { Router, RouterLink } from '@angular/router';
 import { Fields, FormType } from './types';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-signup',
   imports: [InputComponent, ButtonComponent, ReactiveFormsModule, MatIconModule, RouterLink],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  templateUrl: './signup.component.html',
+  styleUrl: './signup.component.scss'
 })
-export class LoginComponent {
-  loginForm!: FormGroup<FormType>;
+export class SignupComponent {
+  signupForm!: FormGroup<FormType>;
   passwordVisible: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private loginService: LoginService, private tokenService: TokenService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private signupService: SignupService, private tokenService: TokenService, private router: Router) { }
 
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
+    this.signupForm = this.formBuilder.group({
       [Fields.Email]: ['', Validators.required],
-      [Fields.Password]: ['', [Validators.required, Validators.minLength(8)]]
+      [Fields.Password]: ['', [Validators.required, Validators.minLength(8)]],
+      [Fields.Username]: ['', Validators.required],
     })
   }
 
   getControl(name: string) {
-    return this.loginForm?.get(name) as FormControl
+    return this.signupForm?.get(name) as FormControl
   }
 
   togglePasswordVisibility() {
@@ -37,16 +38,16 @@ export class LoginComponent {
   }
 
   submitForm(): void {
-    if (this.loginForm?.valid) {
-      console.log('Form data:', this.loginForm.value);
-      this.loginService.login(this.loginForm.value as LoginUserDto).subscribe({
+    console.log(this.signupForm.value)
+    if (this.signupForm?.valid) {
+      this.signupService.signup(this.signupForm.value as SignupDTO).subscribe({
         next: (data) => {
-          console.log("User logged in", data);
+          console.log("Account created successfull !!!", data);
           this.tokenService.setToken(data.token);
           this.router.navigate(['/dashboard']);
         },
         error: (err) => {
-          alert("Un erreur s'est produit !!!");
+          alert("L'utilisateur avec cet email existe déja !!!");
           console.error(err);
         }
       });

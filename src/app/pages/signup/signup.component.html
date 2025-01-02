@@ -1,9 +1,12 @@
 <div class="flex w-full overflow-x-hidden min-h-screen justify-center items-center">
     <div class="wrapper p-9 border border-input flex flex-col items-center gap-3">
-        <h3 class="text-white text-[1.6em] font-semibold">Se connecter à votre compte</h3>
+        <h3 class="text-white text-[1.6em] font-semibold">Créer un compte</h3>
 
         <!-- NOTE form -->
-        <form class="w-full mt-6 flex flex-col gap-4" [formGroup]="loginForm" (ngSubmit)="submitForm()">
+        <form class="w-full mt-6 flex flex-col gap-4" [formGroup]="signupForm" (ngSubmit)="submitForm()">
+            <app-input label="Pseudo" placeholder="Entrez votre pseudo" [type]="'text'"
+                [control]="getControl('username')" customErrorText="Le pseudo est requis">
+            </app-input>
             <app-input label="Adresse email" placeholder="Entrez votre email" [type]="'email'"
                 [control]="getControl('email')" customErrorText="L'email est requis">
             </app-input>
@@ -16,12 +19,11 @@
                         "visibility"}}</mat-icon>
                 </ng-template>
             </app-input>
-            <p class="text-blue-500 text-sm text-end">Mot de passe oublié?</p>
-            <button my-button class="mt-3" type="submit" [isDisabled]="!loginForm.valid">Se connecter</button>
+            <button my-button class="mt-3" type="submit" [isDisabled]="!signupForm.valid">Créer un compte</button>
         </form>
 
-        <p class="text-sm mt-3">Pas encore de compte ? <a routerLink="/signup"
-                class="hover:underline cursor-pointer text-blue-500">S'inscrire</a>
+        <p class="text-sm mt-3">Vous avez déja un compte ? <a routerLink="/"
+                class="hover:underline cursor-pointer text-blue-500">Se connecter</a>
         </p>
     </div>
 </div>
