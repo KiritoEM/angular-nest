@@ -1,11 +1,12 @@
 import { Component, Inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonComponent } from '../../../shared/button/button.component';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { DropdownComponent } from '../../../shared/dropdown/dropdown.component';
 
 @Component({
   selector: 'app-dashboard-nav',
-  imports: [MatIconModule, ButtonComponent],
+  imports: [MatIconModule, ButtonComponent, RouterLink, DropdownComponent],
   templateUrl: './dashboard-nav.component.html',
   styleUrl: './dashboard-nav.component.scss'
 })
