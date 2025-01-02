@@ -11,7 +11,7 @@
         </ngx-skeleton-loader>
     </div>
 
-    <div class="details flex flex-col gap-5 mt-7 flex-1" *ngIf="!isLoading">
+    <div class="details flex flex-col gap-5 mt-7 flex-1 mb-10" *ngIf="!isLoading">
         <h2 class="text-white text-3xl">{{pokemon?.name}}</h2>
         <p class="text-white/80">{{pokemon?.description}}</p>
 
@@ -29,7 +29,7 @@
         <div class="types mt-3">
             <h4 class="text-white text-[1.3em]">Types</h4>
 
-            <div class="content mt-4">
+            <div class="content mt-4 flex gap-4 flex-wrap">
                 <div *ngFor="let type of pokemon?.pokemon_types" class="rounded-full w-max text-sm text-white p-2 px-3"
                     [ngStyle]="{'background-color': getTypeColor(type.name)}">
                     {{type.name}}
