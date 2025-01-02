@@ -10,7 +10,7 @@
             <mat-icon class="cursor-pointer text-white/60">search</mat-icon>
             <input type="text"
                 class="bg-transparent text-[14px] text-white w-full p-3 placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
-                placeholder="Rechercher un pokemon...">
+                placeholder="Rechercher un pokemon..." (input)="onInputChange($event)">
         </div>
 
         <div class="actions flex gap-7 items-center">
@@ -21,12 +21,12 @@
             <app-dropdown>
                 <ng-template #trigger>
                     <div class="avatar flex items-center gap-2" *ngIf="isLoading" appearance="circle">
-                        <ngx-skeleton-loader *ngIf="isLoading" appearance="line" animation="pulse" class="relative top-2"
-                            [theme]="{ width: '40px', height: '40px', borderRadius: '10px'}">
+                        <ngx-skeleton-loader *ngIf="isLoading" appearance="line" animation="pulse"
+                            class="relative top-2" [theme]="{ width: '40px', height: '40px', borderRadius: '10px'}">
                         </ngx-skeleton-loader>
                         <ngx-skeleton-loader *ngIf="isLoading" appearance="line" animation="pulse"
-                        [theme]="{ width: '60px', height: '12px', borderRadius: '10px'}" class="relative top-2">
-                         </ngx-skeleton-loader>
+                            [theme]="{ width: '60px', height: '12px', borderRadius: '10px'}" class="relative top-2">
+                        </ngx-skeleton-loader>
                         <mat-icon
                             class="cursor-pointer text-xl -mt-1 text-white rotate-[-90deg]">chevron_left</mat-icon>
                     </div>

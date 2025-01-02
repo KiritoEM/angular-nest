@@ -8,10 +8,23 @@
         </button>
     </header>
 
-    <div class="grid grid-cols-4 mt-4 gap-6">
+    <div class="grid grid-cols-4 mt-4 gap-6" *ngIf="!isSearch">
         <app-pokemon-card *ngFor="let pokemon of pokemons" [name]="pokemon.name" [description]="pokemon.description"
             [image_url]="formatImageName(pokemon.image_url)" [createdAt]="pokemon.createdAt"
             [abilities]="pokemon.abilities" [pokemon_types]="pokemon.pokemon_types" [isLoading]="isLoading">
         </app-pokemon-card>
+    </div>
+
+    <div class="grid grid-cols-4 mt-4 gap-6" *ngIf="isSearch && !isSearchEmpty">
+        <app-pokemon-card *ngFor="let pokemon of filteredPokemons" [name]="pokemon.name"
+            [description]="pokemon.description" [image_url]="formatImageName(pokemon.image_url)"
+            [createdAt]="pokemon.createdAt" [abilities]="pokemon.abilities" [pokemon_types]="pokemon.pokemon_types"
+            [isLoading]="isLoading">
+        </app-pokemon-card>
+    </div>
+
+    <div *ngIf="isSearch && isSearchEmpty">
+        <p class="text-lg text-white">Aucun pokemon corespondant à <span class="text-primary">"{{searchValue}}"</span>
+        </p>
     </div>
 </div>

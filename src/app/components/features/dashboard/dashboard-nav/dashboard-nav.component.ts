@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonComponent } from '../../../shared/button/button.component';
 import { Router, RouterLink } from '@angular/router';
@@ -8,6 +8,7 @@ import { UserService } from '../../../../core/services/user.service';
 import { User } from './types';
 import { NgIf } from '@angular/common';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { SearchService } from '../../../../core/services/search.service';
 
 @Component({
   selector: 'app-dashboard-nav',
@@ -18,9 +19,21 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 export class DashboardNavComponent implements OnInit {
   contentLoaded: any;
 
-  constructor(private router: Router, private tokenService: TokenService, private userService: UserService) { }
+  constructor(
+    private router: Router,
+    private tokenService: TokenService,
+    private userService: UserService,
+    private searchService: SearchService
+  ) { }
   user: User | null = null;
   isLoading: boolean = true;
+
+  // @Output() value = new EventEmitter<string>();
+
+  onInputChange(event: Event) {
+    const inputValue = (event?.target as HTMLInputElement).value;
+    this.searchService.setSearch(inputValue);
+  }
 
   getUser() {
     const idFromPayload = this.tokenService.getId(this.tokenService.getToken() as string);
