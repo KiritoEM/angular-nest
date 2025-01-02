@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Inject, inject, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { API_URL } from "../../helpers/constants";
 import { LoginUserDto } from "./login.dto";
 import { Observable } from 'rxjs';

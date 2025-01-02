@@ -1,6 +1,6 @@
 <div class="add-form flex justify-center">
     <form class="w-full max-w-[500px] flex flex-col gap-7 px-12 border-x border-b border-input pt-10 pb-12"
-        [formGroup]="addForm">
+        [formGroup]="addForm" (submit)="onSubmit()">
         <h2 class="text-center text-white text-2xl font-semibold">
             Ajouter un Pokémon
         </h2>

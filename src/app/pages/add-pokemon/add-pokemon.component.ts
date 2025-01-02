@@ -7,6 +7,8 @@ import { Fields, FormType } from './types';
 import { TextareaComponent } from '../../components/shared/textarea/textarea.component';
 import { ButtonComponent } from '../../components/shared/button/button.component';
 import { POKEMON_AVALAIBLE_TYPES } from '../../helpers/constants';
+import { AddPokemonService } from './add-pokemon.service';
+import { AddPokemonDTO } from './add-pokemon.dto';
 
 @Component({
   selector: 'app-add-pokemon',
@@ -16,7 +18,7 @@ import { POKEMON_AVALAIBLE_TYPES } from '../../helpers/constants';
 })
 export class AddPokemonComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private addPokemonService: AddPokemonService) { }
 
   file: File | null = null;
   previewURL: string | ArrayBuffer | null = null;
@@ -69,7 +71,7 @@ export class AddPokemonComponent implements OnInit {
     const typesArray = this.addForm.get('types') as FormArray;
 
     if (event.target.checked) {
-      typesArray.push(new FormControl(event.target.value));
+      typesArray.push(new FormControl(event.target.value, [Validators.required]));
     }
     else {
       const index = typesArray.controls.findIndex(control => control.value === event.target.value);
@@ -83,6 +85,28 @@ export class AddPokemonComponent implements OnInit {
   resetInput() {
     this.file = null;
     this.previewURL = null;
+  }
+
+  onSubmit() {
+    if (!this.file) {
+      alert("Pas d'image téléchargé !!!");
+    }
+
+    if (this.addForm?.valid && this.file) {
+      console.log("AddForm value: ", this.addForm?.value);
+      this.addPokemonService.addPokemon(this.addForm?.value as AddPokemonDTO, this.file).subscribe({
+        next: (data) => {
+          console.log("Pokemon added : ", data.pokemon);
+          this.addForm.reset();
+          this.resetInput();
+          alert("Pokemon ajouté avec succés !!!");
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      }
+      )
+    }
   }
 
   getTypeColor(type: string) {
