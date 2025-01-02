@@ -7,8 +7,8 @@ import { Fields, FormType } from './types';
 import { TextareaComponent } from '../../components/shared/textarea/textarea.component';
 import { ButtonComponent } from '../../components/shared/button/button.component';
 import { POKEMON_AVALAIBLE_TYPES } from '../../helpers/constants';
-import { AddPokemonService } from './add-pokemon.service';
-import { AddPokemonDTO } from './add-pokemon.dto';
+import { PokemonService } from '../../core/services/pokemon.service';
+import { AddPokemonDTO } from '../../core/models/pokemon.model';
 
 @Component({
   selector: 'app-add-pokemon',
@@ -18,7 +18,7 @@ import { AddPokemonDTO } from './add-pokemon.dto';
 })
 export class AddPokemonComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private addPokemonService: AddPokemonService) { }
+  constructor(private fb: FormBuilder, private pokemonService: PokemonService) { }
 
   file: File | null = null;
   previewURL: string | ArrayBuffer | null = null;
@@ -93,7 +93,7 @@ export class AddPokemonComponent implements OnInit {
     }
 
     if (this.addForm?.valid && this.file) {
-      this.addPokemonService.addPokemon(this.addForm?.value as AddPokemonDTO, this.file).subscribe({
+      this.pokemonService.addPokemon(this.addForm?.value as AddPokemonDTO, this.file).subscribe({
         next: (data) => {
           this.addForm.reset();
           this.resetInput();

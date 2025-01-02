@@ -3,10 +3,10 @@ import { ButtonComponent } from '../../components/shared/button/button.component
 import { MatIcon } from '@angular/material/icon';
 import { PokemonCardComponent } from '../../components/shared/cards/pokemon-card/pokemon-card.component';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { DashboardService } from './dashboard.service';
 import { Pokemon } from '../../components/shared/cards/pokemon-card/types';
 import { API_URL } from '../../helpers/constants';
 import { SearchService } from '../../core/services/search.service';
+import { PokemonService } from '../../core/services/pokemon.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,15 +23,13 @@ export class DashboardComponent implements OnInit {
   searchValue: string = "";
   isEmpty: boolean = false;
 
-  constructor(private dashboardService: DashboardService, private searchService: SearchService) { }
+  constructor(private pokemonService: PokemonService, private searchService: SearchService) { }
 
   ngOnInit(): void {
-    this.dashboardService.getAllPokemon().subscribe({
+    this.pokemonService.getAllPokemon().subscribe({
       next: (data: any) => {
         this.pokemons = data.allPokemons;
         this.filteredPokemons = [...this.pokemons];
-
-        console.log(this.pokemons)
 
         this.isEmpty = this.filteredPokemons.length === 0;
 

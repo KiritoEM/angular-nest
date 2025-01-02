@@ -2,12 +2,12 @@ import { Component, inject, Inject } from '@angular/core';
 import { InputComponent } from '../../components/shared/input/input.component';
 import { ButtonComponent } from '../../components/shared/button/button.component';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { SignupService } from './signup.service';
 import { SignupDTO } from './signup.dto';
 import { TokenService } from '../../core/services/token.service';
 import { Router, RouterLink } from '@angular/router';
 import { Fields, FormType } from './types';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -19,7 +19,7 @@ export class SignupComponent {
   signupForm!: FormGroup<FormType>;
   passwordVisible: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private signupService: SignupService, private tokenService: TokenService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private tokenService: TokenService, private router: Router) { }
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
@@ -39,7 +39,7 @@ export class SignupComponent {
 
   submitForm(): void {
     if (this.signupForm?.valid) {
-      this.signupService.signup(this.signupForm.value as SignupDTO).subscribe({
+      this.authService.signup(this.signupForm.value as SignupDTO).subscribe({
         next: (data) => {
           this.tokenService.setToken(data.token);
           this.router.navigate(['/dashboard']);

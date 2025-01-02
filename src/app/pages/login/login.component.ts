@@ -3,11 +3,10 @@ import { InputComponent } from '../../components/shared/input/input.component';
 import { ButtonComponent } from '../../components/shared/button/button.component';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { LoginService } from './login.service';
-import { LoginUserDto } from './login.dto';
 import { TokenService } from '../../core/services/token.service';
 import { Router, RouterLink } from '@angular/router';
 import { Fields, FormType } from './types';
+import { AuthService, LoginUserDto } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +18,7 @@ export class LoginComponent {
   loginForm!: FormGroup<FormType>;
   passwordVisible: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private loginService: LoginService, private tokenService: TokenService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private tokenService: TokenService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -38,7 +37,7 @@ export class LoginComponent {
 
   submitForm(): void {
     if (this.loginForm?.valid) {
-      this.loginService.login(this.loginForm.value as LoginUserDto).subscribe({
+      this.authService.login(this.loginForm.value as LoginUserDto).subscribe({
         next: (data) => {
           this.tokenService.setToken(data.token);
           this.router.navigate(['/dashboard']);

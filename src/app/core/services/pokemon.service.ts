@@ -1,15 +1,25 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { AddPokemonDTO } from "./add-pokemon.dto";
 import { API_URL } from "../../helpers/constants";
-import { Observable } from 'rxjs';
+import { UserModel } from "../models/user.model";
+import { Observable } from "rxjs";
+import { AddPokemonDTO } from "../models/pokemon.model";
 
 @Injectable({
     providedIn: "root"
 })
-export class AddPokemonService {
+export class PokemonService {
 
     constructor(private http: HttpClient) { }
+
+    getOne(id: number): Observable<any> {
+        return this.http.get(`${API_URL}/pokemon/${id}`);
+    }
+
+    getAllPokemon(): Observable<any> {
+        return this.http.get(`${API_URL}/pokemon/getAll`);
+    }
+
     addPokemon(pokemonData: AddPokemonDTO, file: File): Observable<any> {
         const abilities = [
             {
