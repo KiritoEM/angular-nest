@@ -1,12 +1,13 @@
 import { Component, inject, Inject } from '@angular/core';
 import { InputComponent } from '../../components/shared/input/input.component';
 import { ButtonComponent } from '../../components/shared/button/button.component';
-import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { LoginService } from './login.service';
 import { LoginUserDto } from './login.dto';
 import { TokenService } from '../../core/services/token.service';
 import { Router } from '@angular/router';
+import { Fields, FormType } from './types';
 
 @Component({
   selector: 'app-login',
@@ -15,20 +16,20 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  loginForm: any;
+  loginForm!: FormGroup<FormType>;
   passwordVisible: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private loginService: LoginService, private tokenService: TokenService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(8)]]
+      [Fields.Email]: ['', Validators.required],
+      [Fields.Password]: ['', [Validators.required, Validators.minLength(8)]]
     })
   }
 
   getControl(name: string) {
-    return this.loginForm.get(name) as FormControl
+    return this.loginForm?.get(name) as FormControl
   }
 
   togglePasswordVisibility() {

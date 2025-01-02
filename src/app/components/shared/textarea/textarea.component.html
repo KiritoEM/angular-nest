@@ -1,0 +1,9 @@
+<div class="form-group flex flex-col">
+    <label *ngIf="label" class="text-sm text-white">{{ label }}</label>
+    <textarea [ngClass]="getClasses()" [formControl]="control" [attr.placeholder]="placeholder"
+        class="textarea"></textarea>
+
+    <div *ngIf="control.invalid && control.touched" class="text-destructive text-xs mt-2">
+        {{ customErrorText }}
+    </div>
+</div>

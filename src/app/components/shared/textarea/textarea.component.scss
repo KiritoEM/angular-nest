@@ -1,11 +1,11 @@
-.base-input {
+.base-textarea {
     display: flex;
     margin-top: 0.5rem;
-    height: 45px;
+    height: 140px;
     align-items: center;
     border-radius: 0.5rem;
     background-color: hsl(var(--input));
-    padding-left: 0.75rem;
+    padding: 1rem;
     color: #ffff;
     font-size: 0.875rem;
     position: relative;
