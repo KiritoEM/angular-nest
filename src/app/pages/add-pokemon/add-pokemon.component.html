@@ -5,7 +5,7 @@
             Ajouter un Pokémon
         </h2>
 
-        <input type="file" id="file-input" class="hidden" (change)="onChange($event)" />
+        <input type="file" id="file-input" class="hidden" (change)="onFileChange($event)" />
         <label for="file-input" class="w-full mt-4">
             <div class="file-upload">
                 <div class="rounded-xl w-full py-7 bg-input p-5 flex flex-col gap-4 items-center" *ngIf="!file">
@@ -50,7 +50,8 @@
             <div class="flex flex-wrap gap-4 mt-3">
                 <div class="input-container p-3 rounded-lg" *ngFor="let type of getTypesArray()"
                     [ngStyle]="{'border-color': getTypeColor(type)}">
-                    <input type="checkbox" id="checkbox" class="rounded-full">
+                    <input type="checkbox" [value]="type" (change)="onCheckboxChange($event)" id="checkbox"
+                        class="rounded-full">
                     <label for="checkbox" class="text-white ml-3">{{type}}</label>
                 </div>
             </div>

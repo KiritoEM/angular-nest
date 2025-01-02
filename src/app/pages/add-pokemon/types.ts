@@ -20,4 +20,5 @@ export interface FormType {
     [Fields.DescriptionAbility2]: FormControl<string | null>;
     [Fields.Ability3]: FormControl<string | null>;
     [Fields.DescriptionAbility3]: FormControl<string | null>;
+    types: any
 }

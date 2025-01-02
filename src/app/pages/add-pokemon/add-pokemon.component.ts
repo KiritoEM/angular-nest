@@ -2,7 +2,7 @@ import { NgFor, NgIf, NgStyle } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { InputComponent } from '../../components/shared/input/input.component';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Fields, FormType } from './types';
 import { TextareaComponent } from '../../components/shared/textarea/textarea.component';
 import { ButtonComponent } from '../../components/shared/button/button.component';
@@ -40,6 +40,7 @@ export class AddPokemonComponent implements OnInit {
       [Fields.DescriptionAbility2]: ['', Validators.required],
       [Fields.Ability3]: ['', Validators.required],
       [Fields.DescriptionAbility3]: ['', Validators.required],
+      types: this.fb.array([])
     });
   }
 
@@ -47,7 +48,7 @@ export class AddPokemonComponent implements OnInit {
     return this.addForm?.get(name) as FormControl;
   }
 
-  onChange(event: any) {
+  onFileChange(event: any) {
     const file: File = event.target.files[0];
 
     if (file) {
@@ -62,6 +63,21 @@ export class AddPokemonComponent implements OnInit {
       reader.readAsDataURL(file);
     }
 
+  }
+
+  onCheckboxChange(event: any) {
+    const typesArray = this.addForm.get('types') as FormArray;
+
+    if (event.target.checked) {
+      typesArray.push(new FormControl(event.target.value));
+    }
+    else {
+      const index = typesArray.controls.findIndex(control => control.value === event.target.value);
+
+      if (index !== -1) {
+        typesArray.removeAt(index);
+      }
+    }
   }
 
   resetInput() {
