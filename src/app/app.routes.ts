@@ -8,6 +8,7 @@ import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-l
 import { AddPokemonComponent } from './pages/add-pokemon/add-pokemon.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { PokemonDetailsComponent } from './pages/pokemon-details/pokemon-details.component';
 
 export const routes: Routes = [
     { path: "", canActivate: [RedirectGuard], component: LoginComponent },
@@ -19,6 +20,7 @@ export const routes: Routes = [
         children: [
             { path: "", component: DashboardComponent },
             { path: "add-pokemon", component: AddPokemonComponent },
+            { path: "pokemon/:pokemonId", component: PokemonDetailsComponent },
         ]
     },
     { path: "**", component: NotFoundComponent }

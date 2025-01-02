@@ -1,0 +1,33 @@
+<div class="pokemon-details flex gap-14 items-start mt-12 container mx-auto px-16">
+    <div class="image w-[45%]">
+        <img crossorigin='anonymous' [src]="formatImageName(pokemon?.image_url)" alt="pokemon-image"
+            class="rounded-xl h-[450px] object-cover">
+    </div>
+
+    <div class="details flex flex-col gap-5 mt-7 flex-1">
+        <h2 class="text-white text-3xl">{{pokemon?.name}}</h2>
+        <p class="text-white/80">{{pokemon?.description}}</p>
+
+        <div class="abilities bg-blue-500 p-5 rounded-xl">
+            <h4 class="text-white text-[1.3em]">Abilités</h4>
+
+            <div class="content mt-4 grid grid-cols-2 gap-3">
+                <div class="ability" *ngFor="let ability of pokemon?.abilities">
+                    <h4 class="text-primary font-semibold text-[20px]">{{ability.name}}</h4>
+                    <p class="text-white">{{ability.description}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="types mt-3">
+            <h4 class="text-white text-[1.3em]">Types</h4>
+
+            <div class="content mt-4">
+                <div *ngFor="let type of pokemon?.pokemon_types" class="rounded-full w-max text-sm text-white p-2 px-3"
+                    [ngStyle]="{'background-color': getTypeColor(type.name)}">
+                    {{type.name}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

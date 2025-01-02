@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Inject, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Param, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { CreatePokemonDto } from './dto/pokemon.dto';
 import { Response } from 'express';
 import { PokemonService } from './pokemon.service';
@@ -20,10 +20,16 @@ export class PokemonController {
         return res.status(201).json({ message: "Pokemon added successfully !!!", pokemon });
     }
 
-    @Get('getAll')
-    async getAllPokemon(@Res() res: Response) {
-        const allPokemons = await this.pokemonService.getAll();
+    @Get(':id')
+    async getAllPokemon(@Param('id') id: string, @Res() res: Response) {
+        const pokemon = await this.pokemonService.findById(parseInt(id));
 
-        return res.status(201).json({ message: "All Pokemons fetched successfully !!!", allPokemons });
+        if (!pokemon) {
+            return res.status(404).json("No pokemon with this id !!!");
+        }
+
+        return res.status(200).json({ message: "Pokemon fetched successfully", pokemon });
     }
+
+
 }

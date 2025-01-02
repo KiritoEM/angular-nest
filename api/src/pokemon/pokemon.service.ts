@@ -113,4 +113,30 @@ export class PokemonService {
             }
         })
     }
+
+    async findById(id: number): Promise<Pokemon | null> {
+        return await this.prisma.pokemon.findUnique({
+            where: {
+                id: id
+            },
+            include: {
+                abilities: {
+                    include: {
+                        ability: true
+                    }
+                },
+                pokemon_types: {
+                    include: {
+                        pokemon_type: true
+                    }
+                }
+            },
+        }).then((pokemon) => {
+            return {
+                ...pokemon,
+                abilities: pokemon.abilities.map((a) => a.ability),
+                pokemon_types: pokemon.pokemon_types.map((t) => t.pokemon_type)
+            }
+        });
+    }
 }

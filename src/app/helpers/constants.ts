@@ -7,7 +7,7 @@ export const POKEMON_AVALAIBLE_TYPES = {
     "fire": "#EE8130",
     "water": "#6390F0",
     "grass": "#7AC74C",
-    "electric": "#F7D02C",
+    "electric": "#FF9D23",
     "ice": "#96D9D6",
     "fighting": "#C22E28",
     "poison": "#A33EA1",
